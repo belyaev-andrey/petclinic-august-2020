@@ -17,4 +17,16 @@
         <property name="veterinarian" view="veterinarian-with_user"/>
         <property name="consumables" view="_local"/>
     </view>
+    <view entity="clinic_Visit" name="visit-changed-view" extends="_local">
+        <property name="pet" view="_minimal">
+            <property name="owner" view="_minimal">
+                <property name="email"/>
+            </property>
+        </property>
+        <property name="veterinarian" view="_minimal">
+            <property name="user" view="_minimal">
+                <property name="email"/>
+            </property>
+        </property>
+    </view>
 </views>

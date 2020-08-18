@@ -4,6 +4,7 @@ import com.company.clinic.entity.Consumable;
 import com.company.clinic.entity.Visit;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 
 @Service(VisitService.NAME)
@@ -23,7 +24,6 @@ public class VisitServiceBean implements VisitService {
                 amount = amount.add(consumable.getPrice());
             }
         }
-
         return amount;
     }
 }

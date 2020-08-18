@@ -1,52 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
-        caption="msg://visitBrowse.caption"
-        focusComponent="visitsTable"
-        messagesPack="com.company.clinic.web.screens.visit">
+        caption="msg://petTypeBrowse.caption"
+        focusComponent="petTypesTable"
+        messagesPack="com.company.clinic.web.screens.pettype">
     <data readOnly="true">
-        <collection id="visitsDc"
-                    class="com.company.clinic.entity.Visit"
-                    view="visit-browse">
-            <loader id="visitsDl">
+        <collection id="petTypesDc"
+                    class="com.company.clinic.entity.PetType">
+            <view extends="_local"/>
+            <loader id="petTypesDl">
                 <query>
-                    <![CDATA[select e from clinic_Visit e]]>
+                    <![CDATA[select e from clinic_PetType e]]>
                 </query>
             </loader>
         </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="visitsTable"
+    <layout expand="petTypesTable"
             spacing="true">
         <filter id="filter"
-                applyTo="visitsTable"
-                dataLoader="visitsDl">
+                applyTo="petTypesTable"
+                dataLoader="petTypesDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="visitsTable"
+        <groupTable id="petTypesTable"
                     width="100%"
-                    dataContainer="visitsDc">
+                    dataContainer="petTypesDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="number"/>
-                <column id="pet"/>
-                <column id="veterinarian"/>
-                <column id="date"/>
-                <column id="description"/>
-                <column id="hoursSpent"/>
-                <column id="amount"/>
+                <column id="name"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="visitsTable.create"/>
-                <button id="editBtn" action="visitsTable.edit"/>
-                <button id="removeBtn" action="visitsTable.remove"/>
+                <button id="createBtn" action="petTypesTable.create"/>
+                <button id="editBtn" action="petTypesTable.edit"/>
+                <button id="removeBtn" action="petTypesTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

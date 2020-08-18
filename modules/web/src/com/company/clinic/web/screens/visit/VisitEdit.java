@@ -9,7 +9,6 @@ import com.haulmont.cuba.gui.screen.*;
 import com.company.clinic.entity.Visit;
 
 import javax.inject.Inject;
-import java.math.BigDecimal;
 
 @UiController("clinic_Visit.edit")
 @UiDescriptor("visit-edit.xml")
