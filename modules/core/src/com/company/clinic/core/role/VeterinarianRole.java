@@ -21,7 +21,7 @@ public class VeterinarianRole extends AnnotatedRoleDefinition {
         return super.screenPermissions();
     }
 
-    @EntityAccess(entityClass = Visit.class, operations = EntityOp.UPDATE)
+    @EntityAccess(entityClass = Visit.class, operations = {EntityOp.UPDATE, EntityOp.READ})
     @EntityAccess(entityClass = Pet.class, operations = EntityOp.READ)
     @EntityAccess(entityClass = PetType.class, operations = EntityOp.READ)
     @EntityAccess(entityClass = Owner.class, operations = EntityOp.READ)
