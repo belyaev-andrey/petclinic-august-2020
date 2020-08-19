@@ -1,5 +1,7 @@
 package com.company.clinic.entity;
 
+import com.google.common.base.Strings;
+import com.haulmont.chile.core.annotations.MetaProperty;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
@@ -11,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Table(name = "CLINIC_VISIT")
@@ -119,6 +122,29 @@ public class Visit extends StandardEntity {
 
     public void setPet(Pet pet) {
         this.pet = pet;
+    }
+
+    @Transient
+    @MetaProperty(related = {"date", "hoursSpent"})
+    public LocalDateTime getEndDate() {
+        if (date == null || hoursSpent == null) return null;
+        return date.plus(hoursSpent, ChronoUnit.HOURS);
+    }
+
+    @Transient
+    @MetaProperty(related = {"pet", "description"})
+    public String getCaption() {
+        StringBuilder sb = new StringBuilder();
+
+        if (pet != null) {
+            sb.append(pet.getName());
+        }
+
+        if (!Strings.isNullOrEmpty(description)) {
+            sb.append(": ").append(description);
+        }
+
+        return sb.toString();
     }
 
     @PostConstruct
