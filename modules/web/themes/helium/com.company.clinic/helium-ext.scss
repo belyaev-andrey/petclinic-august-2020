@@ -1,0 +1,17 @@
+/* Define your theme modifications inside next mixin */
+@mixin com_company_clinic-helium-ext {
+  /* Basic */
+--primary-color: #5A8FFF;
+--primary-color_rgb: 90, 143, 255;
+--secondary-color: #A7ADFF;
+--secondary-color_rgb: 167, 173, 255;
+
+  /* Common */
+--primary-color-shade-1: #3377FF;
+--primary-color-shade-2: #0F5FFF;
+--primary-dim-color: #85ADFF;
+--secondary-color-shade-1: #7581FF;
+--secondary-color-shade-2: #4C5BFF;
+--secondary-dim-color: #BDC2FF;
+
+}
