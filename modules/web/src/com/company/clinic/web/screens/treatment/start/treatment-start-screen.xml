@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://treatmentStartScreen.caption"
+        messagesPack="com.company.clinic.web.screens.treatment.start">
+    <data>
+        <collection id="petsDc" class="com.company.clinic.entity.Pet">
+            <view extends="_local">
+                <property name="type" view="_minimal"/>
+                <property name="owner" view="_minimal"/>
+            </view>
+            <loader id="petsDl">
+                <query>
+                    <![CDATA[select e from clinic_Pet e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="usersDc" class="com.haulmont.cuba.security.entity.User">
+            <view extends="_local"/>
+            <loader id="usersDl">
+                <query>
+                    <![CDATA[select e from sec$User e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <layout spacing="true">
+        <form>
+            <column width="400px">
+                <lookupField id="petField" caption="msg://petfield.caption" optionsContainer="petsDc"/>
+                <textArea id="descriptionField" caption="msg://description.caption"/>
+                <lookupField id="nurseField" caption="msg://nurse.caption" optionsContainer="usersDc"/>
+            </column>
+        </form>
+        <buttonsPanel>
+            <button id="startProcessBtn" caption="msg://startProcess" icon="MEDKIT"/>
+        </buttonsPanel>
+    </layout>
+</window>

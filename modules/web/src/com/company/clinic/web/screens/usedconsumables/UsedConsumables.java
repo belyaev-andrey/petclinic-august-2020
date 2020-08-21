@@ -4,6 +4,7 @@ import com.company.clinic.entity.Consumable;
 import com.company.clinic.service.ConsumablesService;
 import com.haulmont.cuba.core.entity.Entity;
 import com.haulmont.cuba.core.global.CommitContext;
+import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.LoadContext;
 import com.haulmont.cuba.gui.components.Action;
 import com.haulmont.cuba.gui.components.Button;
@@ -11,6 +12,10 @@ import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.CollectionLoader;
 import com.haulmont.cuba.gui.model.DataContext;
 import com.haulmont.cuba.gui.screen.*;
+import com.haulmont.reports.app.service.ReportService;
+import com.haulmont.reports.entity.Report;
+import com.haulmont.reports.gui.ReportGuiManager;
+import com.haulmont.yarg.reporting.ReportingAPI;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -36,6 +41,10 @@ public class UsedConsumables extends Screen {
 
     @Inject
     private Logger log;
+    @Inject
+    private ReportGuiManager reportGuiManager;
+    @Inject
+    private DataManager dataManager;
 
     @Install(to = "consumablesDl", target = Target.DATA_LOADER)
     private List<Consumable> consumablesDlLoadDelegate(LoadContext<Consumable> loadContext) {
@@ -78,6 +87,14 @@ public class UsedConsumables extends Screen {
     @Subscribe("saveData")
     public void onSaveData(Action.ActionPerformedEvent event) {
         dataContext.commit();
+    }
+
+    @Subscribe("runPriceListReport")
+    public void onRunPriceListReport(Action.ActionPerformedEvent event) {
+        Report report = dataManager.load(Report.class).list()
+                .stream().filter(r -> "prices".equals(r.getCode()))
+                .findFirst().orElseThrow(RuntimeException::new);
+        reportGuiManager.runReport(report, this);
     }
 
 

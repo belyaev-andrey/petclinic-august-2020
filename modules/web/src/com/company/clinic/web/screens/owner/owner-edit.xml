@@ -23,6 +23,7 @@
         <hbox id="editActions" spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>
+            <button id="ownerReportBtn"/>
         </hbox>
     </layout>
 </window>

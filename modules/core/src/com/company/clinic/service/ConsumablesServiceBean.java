@@ -1,13 +1,16 @@
 package com.company.clinic.service;
 
 import com.company.clinic.entity.Consumable;
+import com.haulmont.addon.bproc.service.BprocRuntimeService;
 import com.haulmont.cuba.core.EntityManager;
 import com.haulmont.cuba.core.Persistence;
 import com.haulmont.cuba.core.Transaction;
 import com.haulmont.cuba.core.TypedQuery;
-import com.haulmont.cuba.core.global.DataManager;
-import com.haulmont.cuba.core.global.LoadContext;
-import com.haulmont.cuba.core.global.View;
+import com.haulmont.cuba.core.app.EmailerAPI;
+import com.haulmont.cuba.core.app.FileStorageAPI;
+import com.haulmont.cuba.core.entity.FileDescriptor;
+import com.haulmont.cuba.core.global.*;
+import com.haulmont.reports.ReportingApi;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +25,29 @@ public class ConsumablesServiceBean implements ConsumablesService {
 
     @Inject
     private DataManager dataManager;
+    @Inject
+    private ReportingApi reportingApi;
+    @Inject
+    private EmailerAPI emailerAPI;
+    @Inject
+    private FileStorageAPI fileStorageAPI;
+
+    @Inject
+    private BprocRuntimeService bprocRuntimeService;
+
+    public void sendReport() {
+        FileDescriptor andSaveReport = reportingApi.createAndSaveReport(null, null, null);
+        try {
+            byte[] bytes = fileStorageAPI.loadFile(andSaveReport);
+            EmailInfo emailInfo = new EmailInfoBuilder()
+                    .setAddresses("a@a.a")
+                    .addAttachment(new EmailAttachment(bytes, "emailInfo")).build();
+            emailerAPI.sendEmail(emailInfo);
+        } catch (EmailException | FileStorageException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 /*
     @Override

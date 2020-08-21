@@ -11,6 +11,7 @@
         <action id="refreshAction" caption="msg://refresh" icon="REFRESH"/>
         <action id="addFakeConsumable" caption="msg://add.fake" icon="PLUS"/>
         <action id="saveData" caption="msg://save.data" icon="SAVE"/>
+        <action id="runPriceListReport" caption="msg://price.list" icon="DOLLAR"/>
     </actions>
     <layout expand="consumablesTable">
         <hbox spacing="true">
@@ -20,6 +21,7 @@
             <button id="refreshBtn" action="refreshAction"/>
             <button id="addFake" action="addFakeConsumable"/>
             <button id="savBtn" action="saveData"/>
+            <button id="priceListBtn"/>
         </hbox>
         <groupTable id="consumablesTable" width="100%" dataContainer="consumablesDc">
             <columns>
