@@ -1,4 +1,76 @@
 /* Define your theme modifications inside next mixin */
 @mixin com_company_clinic-hover-ext {
+.c-groupbox-caption {
+  color: $petclinic-main-color;
+}
 
+///////////////
+// Side menu //
+///////////////
+.c-sidemenu-layout.v-csslayout {
+  .c-sidemenu-panel {
+    .c-sidemenu-item-action.c-sidemenu-item-focused {
+      border-right: 5px solid $petclinic-main-color;
+    }
+
+    .c-sidemenu-item-header, .c-sidemenu-item-header:hover {
+      color: $petclinic-main-color;
+      margin: 0;
+    }
+
+    .c-sidemenu-item-header-open {
+      background-color: $petclinic-main-color;
+      color: #ffffff;
+    }
+
+    .c-sidemenu-submenu-open {
+      background-color: $petclinic-light-color;
+      color: $petclinic-main-color;
+    }
+
+    .c-sidemenu-item:focus, .c-sidemenu-item:hover, .c-sidemenu-item-focused {
+      color: #ffffff;
+    }
+
+    .c-sidemenu-item-header.c-sidemenu-item-focused, .c-sidemenu-item-selected {
+      background-color: $petclinic-main-color;
+      color: #ffffff;
+    }
+
+    .c-sidemenu {
+      color: $petclinic-main-color;
+    }
+
+    .c-sidemenu-title {
+      margin-bottom: $v-layout-spacing-vertical;
+    }
+  }
+
+  .c-sidemenu-controls {
+    background-color: $petclinic-light-color;
+  }
+
+  .c-sidemenu-collapse-button {
+    background: $petclinic-main-color;
+    color: #ffffff;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  .c-userindicator {
+    color: $petclinic-main-color;
+  }
+
+  .c-settings-button,
+  .c-logout-button,
+  .c-login-button {
+    color: $petclinic-main-color;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
 }

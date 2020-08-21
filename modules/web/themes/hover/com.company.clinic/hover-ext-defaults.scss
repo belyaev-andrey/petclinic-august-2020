@@ -1,3 +1,22 @@
 /* Override global theme constants or define new ones here */
 
 $v-app-loading-text: "Pet Clinic is Loading...";
+
+$petclinic-light-color: #badff3;
+$petclinic-main-color: #00a1d9;
+$petclinic-main-bg: #f1faff;
+
+
+$v-focus-color: $petclinic-main-color;
+$v-focus-style: $v-focus-color;
+$v-selection-color: $petclinic-main-color;
+$v-border: 1px solid $petclinic-light-color;
+$v-friendly-color: $petclinic-main-color;
+$v-font-color: $petclinic-main-color;
+$v-button-font-color: #000;
+
+$cuba-login-btn-background: #0093cf;
+
+$cuba-sidemenu-background-color: #fff;
+$cuba-sidemenu-submenu-background-color: $petclinic-light-color;
+$cuba-sidemenu-title-background-color: $v-selection-color;
